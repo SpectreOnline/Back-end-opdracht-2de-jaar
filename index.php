@@ -1,28 +1,33 @@
 <?php 
 require 'assets/pages/header.php';
 
+require("assets/php/functions.php");
 ?>
 
-<p>Here's some content</p>
+<h1>To Do list</h1>
 
-<div class="card bg-light col-3">
-    <div class="card-body bg-rounded p-0">
-        <h4 class="card-title">Title</h4>
-        <p class="card-text">Text</p>
-    </div>
-    <ul class="list-group">
-        <li class="list-group-item rounded p-2 mt-2" data-toggle="modal" data-target="#exampleModalScrollable">
-            <img class="card-img-top" src="holder.js/100x180/" alt="" hidden>
-            <p class="card-text">Text</p>
-        </li>
-    </ul>
-    <a href="assets/pages/homePage.php"><button type="button" class="btn btn-light">Add a new card +</button></a>
+<div class="card-deck">
+<!--(PHP) foreach loop which makes a new card list for every entry in the cardlist table-->
+  <span class="card bg-light col-3 overflow-auto">
+      <div class="card-body bg-rounded p-0">
+          <h4 class="card-title">Title</h4>
+      </div>
+      <ul class="list-group">
+      <!--(PHP) foreach loop which shall loop through the cards associated with the cardlist in the database -->
+          <li class="list-group-item rounded p-2 mt-2" data-toggle="modal" data-target="#exampleModalScrollable">
+              <img class="card-img-top" src="" alt="" hidden>
+              <p class="card-text">Text</p>
+          </li>
+      <!--End of nested loop -->
+      </ul>
+      <button type="button" class="btn btn-light addCardBtn">Add a new card +</button>
+  </span>
+<!--End of main loop -->
+<button class="btn btn-primary" id="addListBtn">Add a new list +</button>
 </div>
 
-
-<!-- (PHP / JS) function call voor elke keer dat op een kaartje geklikt wordt past de modal zichzelf automatisch
-Aan de opgeslagen details van een kaart waarop geklikt wordt
--->
+<!-- (PHP / JS) function call for when a card has been clicked to show all the detailed information of the specified
+card in the database -->
 <div class="modal" id="exampleModalScrollable" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-scrollable" role="document">
     <div class="modal-content">
