@@ -8,11 +8,9 @@ function startWebpage() {
     /*
     addCardButtons.forEach(button => {
         button.onclick = function () {
-            //The code here shall create a text input element where the user
-            //Can input the name of the card along with a form element
-            //Around it with a submit button to send the create command
-            //To the database
-
+            generate a form to create a new card
+            generate an input field append it to the card list
+            also generate a submit button to submit the form
         }
     });
     */

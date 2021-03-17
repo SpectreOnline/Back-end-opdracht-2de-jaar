@@ -16,8 +16,28 @@ function ConnectToDatabase() {
     }
 }
 
+/*
+* Write function which only grabs cards for a specific cardlist by using
+cardlist ID and Orderby as parameters for the function
 
+*Cardlist shall be used for a where statement
+*Orderby shall simply be used to determine how the cards are arranged
+*/ 
 
+// function PrepareStatementCards
+
+function PrepareStatementCardLists() {
+    $pdo = ConnectToDatabase();
+    $stmt = $pdo->prepare("SELECT * FROM cardlists ORDER BY id ");
+    $stmt->execute();
+    
+    $result = $stmt->fetchall();
+    
+    $pdo = null;
+    
+    return $result;
+    }
+    
 
 function PrepareStatementDetails(){
     $pdo = ConnectToDatabase();

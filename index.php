@@ -2,15 +2,17 @@
 require 'assets/pages/header.php';
 
 require("assets/php/functions.php");
+
+$list = PrepareStatementCardLists();
 ?>
 
 <h1>To Do list</h1>
 
 <div class="card-deck">
-<!--(PHP) foreach loop which makes a new card list for every entry in the cardlist table-->
+<?php foreach ($list as $listItem) {?>
   <span class="card bg-light col-3 overflow-auto">
-      <div class="card-body bg-rounded p-0">
-          <h4 class="card-title">Title</h4>
+      <div class="card-body bg-rounded p-1">
+          <h5 class="card-title"><?= $listItem['name']?></h5>
       </div>
       <ul class="list-group">
       <!--(PHP) foreach loop which shall loop through the cards associated with the cardlist in the database -->
@@ -18,12 +20,18 @@ require("assets/php/functions.php");
               <img class="card-img-top" src="" alt="" hidden>
               <p class="card-text">Text</p>
           </li>
+
+        <!--(JS) write function to generate a text input field
+        When the add a new card button was pressed-->
+
       <!--End of nested loop -->
       </ul>
-      <button type="button" class="btn btn-light addCardBtn">Add a new card +</button>
+      <button type="button" class="btn btn-light addCardBtn" value="<?=$listItem['id']?>">Add a new card +</button>
   </span>
-<!--End of main loop -->
-<button class="btn btn-primary" id="addListBtn">Add a new list +</button>
+
+<?php }?>
+
+<button class="btn btn-secondary ml-4" id="addListBtn">Add a new list +</button>
 </div>
 
 <!-- (PHP / JS) function call for when a card has been clicked to show all the detailed information of the specified

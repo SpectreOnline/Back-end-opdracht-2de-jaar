@@ -3,17 +3,17 @@
 require_once("functions.php");
 
 $name = sanitizeData($_POST["list_name"]); 
-$orderby = "ID";
+$status = "Worked on";
 
 if($name !=null){
     try{
         $pdo = ConnectToDatabase();
-        $stmt = $pdo->prepare("INSERT INTO cardlists (`name`, orderby)
+        $stmt = $pdo->prepare("INSERT INTO cards (`name`, `status`)
         VALUES
-        (:name, :orderby)"
+        (:name, :status)"
         );
         $stmt->bindParam(":name", $name);
-        $stmt->bindParam(":orderby", $orderby);
+        $stmt->bindParam(":status", $status);
         $stmt->execute();
 
         $pdo = NULL;
