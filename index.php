@@ -23,10 +23,10 @@ $list = PrepareStatementCardLists();
 
         <!--(JS) write function to generate a text input field
         When the add a new card button was pressed-->
-
+          
       <!--End of nested loop -->
+      <button type="button" class="btn btn-light m-1 addCardBtn" value="<?=$listItem['id']?>">Add a new card +</button>
       </ul>
-      <button type="button" class="btn btn-light addCardBtn" value="<?=$listItem['id']?>">Add a new card +</button>
   </span>
 
 <?php }?>
