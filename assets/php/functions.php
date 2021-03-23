@@ -24,7 +24,18 @@ cardlist ID and Orderby as parameters for the function
 *Orderby shall simply be used to determine how the cards are arranged
 */ 
 
-// function PrepareStatementCards
+ function PrepareStatementCardsByCardListId($listid){
+    $pdo = ConnectToDatabase();
+    $stmt = $pdo->prepare("SELECT * FROM cards WHERE listid = :listid");
+    $stmt->bindParam(":listid", $listid);
+    $stmt->execute();
+
+    $result = $stmt->fetchall();
+
+    $pdo = null;
+
+    return $result;
+}
 
 function PrepareStatementCardLists() {
     $pdo = ConnectToDatabase();

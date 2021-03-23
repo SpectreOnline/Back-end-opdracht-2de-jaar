@@ -16,15 +16,43 @@ $list = PrepareStatementCardLists();
       </div>
       <ul class="list-group">
       <!--(PHP) foreach loop which shall loop through the cards associated with the cardlist in the database -->
-          <li class="list-group-item rounded p-2 mt-2" data-toggle="modal" data-target="#exampleModalScrollable">
-              <img class="card-img-top" src="" alt="" hidden>
-              <p class="card-text">Text</p>
-          </li>
-
-        <!--(JS) write function to generate a text input field
-        When the add a new card button was pressed-->
-          
-      <!--End of nested loop -->
+      <?php $card = PrepareStatementCardsByCardListId($listItem['id']); 
+            foreach($card as $cardItem) { ?>
+                <li class="list-group-item rounded p-2 mt-2">
+                  <a data-toggle="collapse" href="#collapseForCard-<?=$cardItem['id']?>" style="text-decoration: none;">
+                    <img class="card-img-top" src="" alt="" hidden>
+                    <h5 class="card-text"><?=$cardItem['name'] ?></h5>
+                    <p class="card-text">Duration: <?=$cardItem['duration'] ?></p>
+                    <p class="card-text">Status: <?=$cardItem['status'] ?></p>
+                  </a>
+                </li>
+          <span class="collapse row" id="collapseForCard-<?=$cardItem['id']?>">
+            <div class="card card-body rounded p-2">
+            <p class="card-text">You are now editing: <?=$cardItem['name'] ?></p>
+            <form action="assets/php/editcard.php" method="post">
+            <div class="form-group">
+              <label for="new_card_name">Name:</label>
+              <input type="text" class="form-control" name="new_card_name" id="" aria-describedby="helpId" value="<?=$cardItem["name"]?>">
+            </div>
+            <div class="form-group">
+              <label for="new_card_duration">Duration:</label>
+              <input type="number" class="form-control" name="new_card_duration" id="" aria-describedby="helpId" value="<?=$cardItem["duration"]?>">
+            </div>
+            <div class="form-group"> 
+              <div class="form-group">
+                <label for="new_card_status">Status</label>
+                <select class="form-control" name="new_card_status" id="">
+                  <option value="To Do">To Do</option>
+                  <option value="Working On">Working On</option>
+                  <option value="On Hold">On Hold</option>
+                  <option value="Finished">Finished</option>
+                </select>
+              </div>
+            </div>
+            </form>
+            </div>
+          </span>
+      <?php } ?>
       <button type="button" class="btn btn-light m-1 addCardBtn" value="<?=$listItem['id']?>">Add a new card +</button>
       </ul>
   </span>
@@ -32,28 +60,6 @@ $list = PrepareStatementCardLists();
 <?php }?>
 
 <button class="btn btn-secondary ml-4" id="addListBtn">Add a new list +</button>
-</div>
-
-<!-- (PHP / JS) function call for when a card has been clicked to show all the detailed information of the specified
-card in the database -->
-<div class="modal" id="exampleModalScrollable" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-scrollable" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalCenteredLabel">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
 </div>
 
 <?php 
