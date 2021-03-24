@@ -8,14 +8,13 @@ $list = PrepareStatementCardLists();
 
 <h1>To Do list</h1>
 
-<div class="card-deck">
+<div class="card-deck h-75">
 <?php foreach ($list as $listItem) {?>
-  <span class="card bg-light col-3 overflow-auto">
-      <div class="card-body bg-rounded p-1">
+  <span class="card card-body bg-light col-3 h-100 overflow-auto">
+      
           <h5 class="card-title"><?= $listItem['name']?></h5>
-      </div>
+      
       <ul class="list-group">
-      <!--(PHP) foreach loop which shall loop through the cards associated with the cardlist in the database -->
       <?php $card = PrepareStatementCardsByCardListId($listItem['id']); 
             foreach($card as $cardItem) { ?>
                 <li class="list-group-item rounded p-2 mt-2">
@@ -29,7 +28,7 @@ $list = PrepareStatementCardLists();
           <span class="collapse row" id="collapseForCard-<?=$cardItem['id']?>">
             <div class="card card-body rounded p-2">
             <p class="card-text">You are now editing: <?=$cardItem['name'] ?></p>
-            <form action="assets/php/editcard.php" method="post">
+            <form action="assets/php/editcard.php?id=<?=$cardItem['id']?>" method="post">
             <div class="form-group">
               <label for="new_card_name">Name:</label>
               <input type="text" class="form-control" name="new_card_name" id="" aria-describedby="helpId" value="<?=$cardItem["name"]?>">
@@ -49,6 +48,7 @@ $list = PrepareStatementCardLists();
                 </select>
               </div>
             </div>
+            <button type="submit" class="btn btn-primary">Update</button>
             </form>
             </div>
           </span>
