@@ -11,11 +11,12 @@ $list = PrepareStatementCardLists();
 <div class="card-deck h-75">
 <?php foreach ($list as $listItem) {?>
   <span class="card card-body bg-light col-3 h-100 overflow-auto">
-      
+        <div class="row ml-1">
           <h5 class="card-title"><?= $listItem['name']?></h5>
-      
+          <button type="button" class="btn btn-primary ml-auto mr-3 editListBtn" id="<?=$listItem['id']?>">Edit</button>
+        </div>
       <ul class="list-group">
-      <?php $card = PrepareStatementCardsByCardListId($listItem['id']); 
+      <?php $card = PrepareStatementCardsByCardListId($listItem['id'], $listItem['orderby']); 
             foreach($card as $cardItem) { ?>
                 <li class="list-group-item rounded p-2 mt-2">
                   <a data-toggle="collapse" href="#collapseForCard-<?=$cardItem['id']?>" style="text-decoration: none;">

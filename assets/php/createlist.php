@@ -3,7 +3,7 @@
 require_once("functions.php");
 
 $name = sanitizeData($_POST["list_name"]); 
-$orderby = "ID";
+$orderby = "id";
 
 if($name !=null){
     try{
