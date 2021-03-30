@@ -49,7 +49,12 @@ $list = PrepareStatementCardLists();
                 </select>
               </div>
             </div>
+            <div class="row ml-1">
             <button type="submit" class="btn btn-primary">Update</button>
+            <a href="assets/php/deletecard.php?id=<?=$cardItem['id']?>" class="ml-auto mr-3">
+            <button type="button" class="btn btn-danger">Delete</button>
+            </a>
+            </div>
             </form>
             </div>
           </span>
