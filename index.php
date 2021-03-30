@@ -14,6 +14,9 @@ $list = PrepareStatementCardLists();
         <div class="row ml-1">
           <h5 class="card-title"><?= $listItem['name']?></h5>
           <button type="button" class="btn btn-primary ml-auto mr-3 editListBtn" id="<?=$listItem['id']?>">Edit</button>
+          <a href="assets/php/deletelist.php?id=<?=$listItem['id']?>" class="mr-3">
+            <button type="button" class="btn btn-danger">Delete</button>
+            </a>
         </div>
       <ul class="list-group">
       <?php $card = PrepareStatementCardsByCardListId($listItem['id'], $listItem['orderby']); 
