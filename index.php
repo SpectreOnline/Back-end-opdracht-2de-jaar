@@ -13,7 +13,7 @@ $list = PrepareStatementCardLists();
   <span class="card card-body bg-light col-3 h-100 overflow-auto">
         <div class="row ml-1">
           <h5 class="card-title"><?= $listItem['name']?></h5>
-          <button type="button" class="btn btn-primary ml-auto mr-3 editListBtn" id="<?=$listItem['id']?>">Edit</button>
+          <button type="button" class="btn btn-primary ml-auto mr-3 editListBtn" id="<?=$listItem['id']?>" data-listname="<?=$listItem['name']?>">Edit</button>
           <a href="assets/php/deletelist.php?id=<?=$listItem['id']?>" class="mr-3">
             <button type="button" class="btn btn-danger">Delete</button>
             </a>

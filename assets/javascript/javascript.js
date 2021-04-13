@@ -112,13 +112,13 @@ function prepareCardForm(button) {
 
 function prepareEditListForm(button) {
     button.hidden = true;
-    console.log(button.id);
     var newInputForm = document.createElement("form");
     newInputForm.setAttribute("action", `assets/php/editlist.php?id=${button.id}`);
     newInputForm.setAttribute("method", "post");
 
     var newTextInput = document.createElement("input");
     newTextInput.setAttribute("type", "text");
+    newTextInput.setAttribute("value", button.dataset.listname);
     newTextInput.setAttribute("name", "new_list_name");
     newInputForm.append(newTextInput);
 
