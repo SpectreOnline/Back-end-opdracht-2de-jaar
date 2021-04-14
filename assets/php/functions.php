@@ -63,3 +63,14 @@ function PrepareStatementCardLists() {
     return $result;
     }
     
+/*
+Receives data en then proceeds to use 3 built in php functions to sanitize the given data
+The sanitized data is then returned
+*/
+function sanitizeData($data){
+    $data = htmlspecialchars($data);
+    $data = trim($data);
+    $data = stripslashes($data);
+
+    return $data;
+}

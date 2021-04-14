@@ -26,12 +26,4 @@ if($name != NULL && $status != NULL && $duration != NULL) {
 }
 }
 
-function sanitizeData($data){
-    $data = htmlspecialchars($data);
-    $data = trim($data);
-    $data = stripslashes($data);
-
-    return $data;
-}
-
 ?>

@@ -19,12 +19,13 @@ var orderList = [
 
 startWebpage();
 
+/*
+generate a form to create a new card
+generate an input field append it to the card list
+also generate a submit button to submit the form
+*/
+
 function startWebpage() {
-    /*
-    generate a form to create a new card
-    generate an input field append it to the card list
-    also generate a submit button to submit the form
-    */
 
     addCardButtons.forEach(button => {
         button.onclick = function () {

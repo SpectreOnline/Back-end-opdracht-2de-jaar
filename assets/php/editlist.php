@@ -25,12 +25,5 @@ if($name != NULL && $orderby != NULL && $filter != NULL) {
 }
 }
 
-function sanitizeData($data){
-    $data = htmlspecialchars($data);
-    $data = trim($data);
-    $data = stripslashes($data);
-
-    return $data;
-}
 
 ?>

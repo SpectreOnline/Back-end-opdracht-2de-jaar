@@ -28,11 +28,3 @@ if($name !=null && $status != null && $duration != null){
         var_dump($_POST);
     }
 }
-
-function sanitizeData($data){
-    $data = htmlspecialchars($data);
-    $data = trim($data);
-    $data = stripslashes($data);
-
-    return $data;
-}

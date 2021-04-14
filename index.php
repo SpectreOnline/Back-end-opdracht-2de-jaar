@@ -6,7 +6,10 @@ require("assets/php/functions.php");
 $list = PrepareStatementCardLists();
 ?>
 
-<h1>To Do list</h1>
+<div class='row ml-2'>
+  <h1>To Do list</h1>
+  <button class="btn btn-light ml-2 float-right" id="addListBtn">Add a new list +</button>
+</div>
 
 <div class="card-deck h-75">
 
@@ -70,7 +73,6 @@ $list = PrepareStatementCardLists();
 
 <?php }?>
 
-<button class="btn btn-secondary ml-4" id="addListBtn">Add a new list +</button>
 </div>
 
 <?php 
