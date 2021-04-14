@@ -4,6 +4,7 @@ var listContainer = document.querySelectorAll(".card-deck");
 var editListButtons = document.querySelectorAll(".editListBtn");
 
 var statusList = [
+    "none",
     "To do",
     "Working on",
     "On hold",
@@ -41,7 +42,9 @@ function startWebpage() {
         prepareListForm();
     }
 }
-
+/*
+This function prepares a simple form where the user can create a list
+*/
 function prepareListForm() {
     addListButton.hidden = true;
 
@@ -65,6 +68,9 @@ function prepareListForm() {
     });
 }
 
+/*
+This function prepares a form for editing a card's name, duration and status
+*/
 function prepareCardForm(button) {
 
     button.hidden = true;
@@ -87,11 +93,13 @@ function prepareCardForm(button) {
     var newSelectList = document.createElement("select");
     newSelectList.setAttribute("name", "card_status");
     statusList.forEach(item => {
-        var newOption = document.createElement("option");
-        newOption.value = item;
-        newOption.innerHTML = item;
-        newSelectList.append(newOption);
-        newOption = null;
+        if (item != "none") {
+            var newOption = document.createElement("option");
+            newOption.value = item;
+            newOption.innerHTML = item;
+            newSelectList.append(newOption);
+            newOption = null;
+        }
     });
     newInputForm.append(newSelectList);
 
@@ -110,6 +118,9 @@ function prepareCardForm(button) {
     button.parentElement.append(newInputForm);
 }
 
+/*
+This function prepares a form for editing the list's name, order and filter
+*/
 function prepareEditListForm(button) {
     button.hidden = true;
     var newInputForm = document.createElement("form");
@@ -125,6 +136,17 @@ function prepareEditListForm(button) {
     var newSelectList = document.createElement("select");
     newSelectList.setAttribute("name", "new_list_orderby");
     orderList.forEach(item => {
+        var newOption = document.createElement("option");
+        newOption.value = item;
+        newOption.innerHTML = item;
+        newSelectList.append(newOption);
+        newOption = null;
+    });
+    newInputForm.append(newSelectList);
+
+    var newSelectList = document.createElement("select");
+    newSelectList.setAttribute("name", "new_list_filter");
+    statusList.forEach(item => {
         var newOption = document.createElement("option");
         newOption.value = item;
         newOption.innerHTML = item;

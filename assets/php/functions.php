@@ -1,5 +1,7 @@
 <?php
-
+/*
+Opens a connection to the database
+*/
 function ConnectToDatabase() {
 
     $host = "localhost";
@@ -24,10 +26,20 @@ cardlist ID and Orderby as parameters for the function
 *Orderby shall simply be used to determine how the cards are arranged
 */ 
 
- function PrepareStatementCardsByCardListId($listid, $orderby = 'id'){
+ function PrepareStatementCardsByCardListId($listid, $orderby = 'id', $filter = 'none'){
     $pdo = ConnectToDatabase();
-    $stmt = $pdo->prepare("SELECT * FROM cards WHERE listid = :listid ORDER BY $orderby asc");
+    if($filter == 'none'){
+        $stmt = $pdo->prepare("SELECT * FROM cards WHERE listid = :listid ORDER BY $orderby asc");
+    } else {
+        $stmt = $pdo->prepare("SELECT * FROM cards WHERE listid = :listid AND status = :stat ORDER BY $orderby asc");
+    }
+
     $stmt->bindParam(":listid", $listid);
+
+    if($filter != 'none'){
+    $stmt->bindParam(":stat", $filter);
+    }
+
     $stmt->execute();
 
     $result = $stmt->fetchAll();
@@ -36,7 +48,9 @@ cardlist ID and Orderby as parameters for the function
 
     return $result;
 }
-
+/*
+This function fetches all the card lists out of the database that are to be displayed on the page
+*/
 function PrepareStatementCardLists() {
     $pdo = ConnectToDatabase();
     $stmt = $pdo->prepare("SELECT * FROM cardlists ORDER BY id ");
@@ -49,17 +63,3 @@ function PrepareStatementCardLists() {
     return $result;
     }
     
-
-function PrepareStatementDetails(){
-    $pdo = ConnectToDatabase();
-    $id = $_GET['id'];
-    
-    $stmt = $pdo->prepare("SELECT * FROM tablename WHERE id =?");
-    $stmt->execute([$name]);
-    
-    $result = $stmt -> fetch();
-    
-    $pdo = null;
-    
-    return $result;
-    }
